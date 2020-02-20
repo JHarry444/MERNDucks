@@ -1,3 +1,5 @@
 {
-    "trainerUrl": "/trainers"
+    "trainerUrl": "/trainers",
+    "peopleDb": "people",
+    "dbUrl": "localhost:27017"
 }

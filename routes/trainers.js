@@ -1,31 +1,7 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Person } = require('../db');
 
-const personSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    dob: {
-        type: Date,
-        required: true
-    }
-});
-
-const Person = mongoose.model('Person', personSchema);
-
-
-mongoose.connect('mongodb://localhost:27017/people',
-    { useNewUrlParser: true }, (err) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log('Great success!');
-        }
-    });
-
-router.get('/hello', (req, res, next) => res.send('Hello, World!'));
+router.get('/hello', (req, res) => res.send('Hello, World!'));
 
 router.get('/getAll', (req, res, next) => {
     Person.find((error, result) => {
@@ -50,7 +26,7 @@ router.delete('/delete/:id', (req, res, next) => {
         if (error) {
             next(error);
         }
-        res.send(result);
+        res.status(204).send(result);
     });
 });
 
