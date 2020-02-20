@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { dbUrl, peopleDb } = require('./consts.json');
 
 const personSchema = new Schema({
     name: {
@@ -15,7 +16,7 @@ const personSchema = new Schema({
 const Person = mongoose.model('Person', personSchema);
 
 
-mongoose.connect('mongodb://localhost:27017/people',
+mongoose.connect(`mongodb://${dbUrl}/${peopleDb}`,
     { useNewUrlParser: true }, (err) => {
         if (err) {
             console.error(err);
