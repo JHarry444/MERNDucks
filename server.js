@@ -21,17 +21,14 @@ app.use((req, res, next) => {
 
 app.use(trainerUrl, trainerRoutes);
 
-app.get('/getError', (req, res) => {
-    throw new Error('error');
-});
-
 app.use((err, req, res, next) => {
     console.error(err);
     next(err);
 });
 
 app.use((err, req, res, next) => {
-    res.send(err.message);
+    console.log("weapon");
+    res.status(500).send(err.message || "You must construct additional testing.");
 });
 
 const server = app.listen(port, () => {
