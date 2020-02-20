@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const trainerRoutes = require('./routes/trainers');
+const urlRoutes = require('./routes/users');
 const { trainerUrl } = require('./consts.json');
 const port = process.env.PORT || 4494;
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 });
 
 app.use(trainerUrl, trainerRoutes);
+
+app.use('/users', urlRoutes);
 
 app.use((err, req, res, next) => {
     console.error(err);
