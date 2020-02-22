@@ -1,13 +1,17 @@
 const router = require('express').Router();
-const { User } = require('../db');
+const { User } = require('../config/db');
 const bcrypt = require('bcrypt');
-const validator = require('validator');
+const { isEmail, isEmpty } = require('validator');
+const createError = require('http-errors');
 
 router.post('/create', ({ body }, res, next) => {
     const { userName, email, password } = body;
-
-    if (!validator.isEmail(email)) {
-        
+    if (!isEmail(email)) {
+        return next(createError(418, "Invalid Email Address"));
+    } else if (isEmpty(userName)) {
+        return next(createError(418, "Username required"));
+    } else if (isEmpty(password)) {
+        return next(createError(418, "Password required"));
     } else {
         const newUser = new User({ userName, email, password });
 
