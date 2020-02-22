@@ -3,8 +3,12 @@ const { Schema, model } = mongoose;
 const { dbUrl, peopleDb } = require('./consts.json');
 const bcrypt = require('bcrypt');
 
-const personSchema = new Schema({
+const duckSchema = new Schema({
     name: {
+        type: String,
+        required: true
+    },
+    colour: {
         type: String,
         required: true
     },
@@ -14,7 +18,7 @@ const personSchema = new Schema({
     }
 });
 
-const Person = model('Person', personSchema);
+const Duck = model('Duck', duckSchema);
 
 const userSchema = new Schema({
     userName: {
@@ -49,6 +53,6 @@ mongoose.connect(`mongodb://${dbUrl}/${peopleDb}`,
     });
 
 module.exports = {
-    Person,
+    Duck,
     User
 }

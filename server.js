@@ -1,37 +1,27 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const trainerRoutes = require('./routes/trainers');
-const urlRoutes = require('./routes/users');
-const { trainerUrl } = require('./consts.json');
+const duckRouter = require('./routes/ducks');
+const urlRouter = require('./routes/users');
+const { userUrl, duckUrl } = require('./config/config.json');
 const port = process.env.PORT || 4494;
+const logger = require('./config/logger');
+const createError = require('http-errors');
+
+app.use(logger);
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-    const logEntry =
-        `
-    host: ${req.hostname}
-    ip: ${req.ip}
-    method: ${req.method}
-    path: ${req.path}
-    time: ${new Date()}`;
-    console.log(logEntry);
-    next();
-});
+app.use(duckUrl, duckRouter);
 
-app.use(trainerUrl, trainerRoutes);
+app.use(userUrl, urlRouter);
 
-app.use('/users', urlRoutes);
-
-app.use((err, req, res, next) => {
-    console.error(err);
-    next(err);
+app.use('*', (req, res, next) => {
+    next(createError(404, 'Resource not found'));
 });
 
 app.use((err, req, res, next) => {
-    console.log("weapon");
-    res.status(500).send(err.message || "You must construct additional testing.");
+    res.status(err.statusCode || 500).send(err.message || "You must construct additional testing.");
 });
 
 const server = app.listen(port, () => {
