@@ -1,9 +1,9 @@
-// const app = require('./server');
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const expect = chai.expect;
-// const { trainerUrl } = require('./consts.json');
-// chai.use(chaiHttp);
+const app = require('./server');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const expect = chai.expect;
+const { trainerUrl } = require('../config/config.json');
+chai.use(chaiHttp);
 
 // describe('trainers', function () {
 //     describe('#hello', function () {
@@ -24,4 +24,4 @@
 //     expect(res).to.have.property('status', 200);
 //     expect(res).to.have.property('text', '["JH","Chris","Rhys","Dale","Bob"]');
 // });
-console .log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV);

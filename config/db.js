@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const { dbUrl, peopleDb } = require('./consts.json');
+const { dbUrl, peopleDb } = require('./config.json');
 const bcrypt = require('bcrypt');
 
 const duckSchema = new Schema({

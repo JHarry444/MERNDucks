@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
+const logger = require('./config/logger');
 const bodyParser = require('body-parser');
 const duckRouter = require('./routes/ducks');
 const urlRouter = require('./routes/users');
 const { userUrl, duckUrl } = require('./config/config.json');
 const port = process.env.PORT || 4494;
-const logger = require('./config/logger');
 const createError = require('http-errors');
 
 app.use(logger);

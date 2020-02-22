@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Duck } = require('../config/db');
+const { merge } = require('lodash');
 
 router.get('/getAll', (req, res, next) => {
     Duck.find((error, result) => {
@@ -34,7 +35,7 @@ router.delete('/delete/:id', (req, res, next) => {
 router.post('/create', ({ body }, res, next) => {
     const duck = new Duck(body);
     duck.save().then((result) => {
-        res.status(201).send(`${result.userName} added successfully`);
+        res.status(201).send(`${result.name} added successfully`);
     }).catch(err => next(err));
 });
 
@@ -50,14 +51,12 @@ router.put('/replace/:id', (req, res, next) => {
 });
 
 router.patch('/update/:id', function (req, res, next) {
-    Duck.findById(req.params.id, (error, result) => {
+    Duck.findById(req.params.id, (error, duck) => {
         if (error) {
             return next(error);
         }
-        const Duck = result;
-        Duck.name = req.query.name;
-        Duck.dob = req.query.dob;
-        Duck.save((error) => {
+        merge(duck, req.params);
+        duck.save((error) => {
             if (error) {
                 next(error);
             } else {
