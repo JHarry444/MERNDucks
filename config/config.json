@@ -1,6 +1,6 @@
 {
-    "userUrl": "/users",
-    "duckUrl": "/ducks",
-    "peopleDb": "people",
-    "dbUrl": "localhost:27017"
+    "USER_URL": "/users",
+    "DUCK_URL": "/ducks",
+    "DB_NAME": "ducks",
+    "DB_URL": "localhost:27017"
 }

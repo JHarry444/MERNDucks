@@ -1,27 +1,24 @@
-const app = require('./server');
+const app = require('../server');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = chai.expect;
-const { trainerUrl } = require('../config/config.json');
+const { DUCK_URL } = require('../config/config.json');
 chai.use(chaiHttp);
 
-// describe('trainers', function () {
-//     describe('#hello', function () {
-//         it('Should return Hello, World!', (done) => {
-//             chai.request(app).get(`${trainerUrl}/hello`).end(function (err, res) {
-//                 expect(err).to.be.null;
-//                 expect(res).to.have.property('status', 200);
-//                 expect(res).to.have.property('text', 'Hello, World!');
-//                 done();
-//             });
-//         })
-//     })
-// })
+const mongoose = require('mongoose');
 
+describe('trainers', function () {
+    this.afterAll('close connections', function () {
+        mongoose.disconnect()
+    });
 
-// chai.request(app).get(`${trainerUrl}/getAll`).end(function (err, res) {
-//     expect(err).to.be.null;
-//     expect(res).to.have.property('status', 200);
-//     expect(res).to.have.property('text', '["JH","Chris","Rhys","Dale","Bob"]');
-// });
-console.log(process.env.NODE_ENV);
+    describe('#hello', function () {
+        it('Should return Hello, World!', function (done) {
+            chai.request(app).get(`${DUCK_URL}/getAll`).end(function (err, res) {
+                expect(err).to.be.null;
+                expect(res).to.have.property('status', 200);
+                done();
+            });
+        });
+    });
+});

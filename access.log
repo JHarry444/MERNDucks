@@ -1,1 +1,7 @@
-[0mPOST /ducks/create [31m500 [0m11376.526 ms - 58[0m
+[0mGET /ducks/getAll [32m200 [0m16.820 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m16.628 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m13.903 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m11.597 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m9.865 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m17.203 ms - 2[0m
+[0mGET /ducks/getAll [32m200 [0m15.417 ms - 2[0m

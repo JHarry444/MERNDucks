@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-const { dbUrl, peopleDb } = require('./config.json');
+const { DB_URL, DB_NAME } = require('./config.json');
 const bcrypt = require('bcrypt');
 
 const duckSchema = new Schema({
@@ -43,7 +43,7 @@ const userSchema = new Schema({
 
 const User = model('User', userSchema);
 
-mongoose.connect(`mongodb://${dbUrl}/${peopleDb}`,
+mongoose.connect(`mongodb://${DB_URL}/${DB_NAME}`,
     { useNewUrlParser: true }, (err) => {
         if (err) {
             console.error(err);

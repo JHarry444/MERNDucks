@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha",
+    "test": "mocha tests --reporter=nyan",
     "coverage": "nyc npm test"
   },
   "keywords": [],
@@ -20,7 +20,7 @@
     "fs": "0.0.1-security",
     "http-errors": "^1.7.3",
     "lodash": "^4.17.15",
-    "mocha": "^7.0.1",
+    "mocha": "^7.1.1",
     "mongoose": "^5.9.1",
     "morgan": "^1.9.1",
     "validator": "^12.2.0"
